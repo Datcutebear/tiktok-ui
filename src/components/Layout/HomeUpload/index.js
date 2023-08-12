@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../component/Header"
 
 function UploadHeaderLayout({children}){
     return(
