@@ -1,0 +1,80 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    padding: 9px 16px;
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+    &:hover .user-menu{
+        display: block;
+    }
+}
+// Avatar
+.avatar{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0px 12px 0px 0px;
+    object-fit: cover;
+    /* padding: 0px; */
+    white-space: nowrap; /* ngăn không cho phần tử bị quá kích thước xuống dòng*/
+    font-feature-settings: "tnum";
+    position: relative;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+}
+// Phần accounts
+.full-account{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.account{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name{
+    display: flex;
+    flex-direction: row;
+}
+
+.nickname{
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.check-icon{
+    margin-left: 8px;
+    font-size: 15px;
+    color: rgb(32, 213, 236);
+}
+.user-name{
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.093px;
+    color: rgba(22, 24, 35, 0.5);
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-menu{
+    height: 17px;
+    cursor: pointer;
+    display: none; 
+}
