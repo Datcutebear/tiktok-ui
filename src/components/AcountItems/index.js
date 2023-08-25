@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from './AcountItems.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUpLong, faCircleCheck, faEllipsis} from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faEllipsis} from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles)
 

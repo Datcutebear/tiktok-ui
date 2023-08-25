@@ -1,0 +1,101 @@
+//menu wrapper
+.content{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    margin-top: -6px;
+    min-width: 223px;
+    list-style: none;
+    .menu-items{
+        margin-left: 0px;
+        justify-content: left;
+    }
+    .custom-popper{
+        padding-bottom: 8px;
+    }
+}
+//Before menu btns
+.content {
+    position: relative;
+}
+  
+.content::before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 8px 7px 8px;
+    border-color: transparent transparent var(--white) transparent;
+    transform: rotate(0deg);
+    box-shadow: 2px;
+}
+  
+.content::before {
+    top: -5px;
+    right: 15px;
+}
+//menu items
+.menu-items{
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    padding: 10px 8px 10px 16px;
+    margin: 0px;
+    min-width: 223px;
+    list-style: none;
+    color: var(--text-color);
+    border-radius: 0;
+    &:hover{
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
+
+@keyframes FadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out{
+    animation-name: FadeOut;
+    animation-duration: 0.3s;
+    animation-fill-mode: linear;
+}
+
+//Header menu
+.header-menu{
+    display: flex;
+    position: relative;
+    height: 50px;
+    align-items: center;
+    margin-top: -8px;
+}
+
+.back-btn{
+    width: 50px;
+    height: 100%;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.header-title{
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    letter-spacing: 0.05px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.back-menu{
+    margin-left: 20px;
+    width: 17px;
+    height: 17px;
+}

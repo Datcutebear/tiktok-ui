@@ -1,0 +1,86 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    min-width: 100px;
+    min-height: 36px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    padding: 0px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--white);
+    user-select: none;
+
+    + .wrapper{
+        margin-left: 8px;
+    }
+    &.disable{
+        pointer-events: none;
+    }
+}
+//Button types
+.rounded{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 52px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    background-color: rgba(255, 255, 255, 1);
+
+    &:hover{
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(255, 255, 255, 1);
+    }
+}
+
+.primary{
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    &:hover{
+        border-color: var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),#FE2C55;
+    }
+}
+
+.outline{
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    &:hover{
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+
+//Button styles
+.small{
+    min-width: 96px;
+    padding: 1px, 15px;
+}
+
+.large{
+    min-height: 48px;
+    padding: 6px 8px;
+}
+
+// upload button
+.upload{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    display: block;
+}
+
+.icon + .title, .title + .icon {
+    margin-left: 8px;
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}   

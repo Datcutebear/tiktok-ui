@@ -1,14 +1,52 @@
 import styles from './Header.module.scss' 
 import classNames from 'classnames/bind';
 import image from '~/assets/images';
+
+//Phần 2
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faSearch, faSpinner} from '@fortawesome/free-solid-svg-icons';   
+import { faTimes, faSearch, faSpinner, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard} from '@fortawesome/free-solid-svg-icons';   
 import { useEffect, useState } from 'react';
-import Tippy from '@tippyjs/react/headless';
 import {Wrapper as PopperWrapper} from '~/components/Popper';
+
+//Phần 3
+import Tippy from '@tippyjs/react/headless';
 import AcountItems from '~/components/AcountItems';
+import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 
 const cx = classNames.bind(styles)
+
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'English',
+        children: {
+            title: "Language",
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+            ],
+        },
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feedback'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard shortcut'
+
+    }
+]
 function Header() {
     // Hiện border khi focus
     const [isInputFocused, setIsInputFocused] = useState(false);
@@ -47,6 +85,12 @@ function Header() {
             setSearchResult([])
         }, 3000);
     })
+
+    //Handle logic
+
+    const HandleChangeMenu = (menuItem) => {
+        console.log(menuItem)
+    }
     return ( 
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -105,7 +149,22 @@ function Header() {
                 </div>
                 </Tippy>
                 <div className={cx('actions')}>
-
+                    <Button upload to="/upload">
+                        <div className={cx('upload')}>
+                            <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
+                            <span className={cx('upload-text')}>
+                                Upload
+                            </span>
+                        </div>
+                    </Button>
+                    <Button primary>
+                        Log in
+                    </Button>
+                    <Menu items={MENU_ITEMS} onChange={HandleChangeMenu}>
+                        <button className={cx('another-change')}>
+                            <FontAwesomeIcon className={cx('icon-menu')} icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
