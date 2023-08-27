@@ -9,10 +9,9 @@
     font-size: 1.6rem;
     line-height: 21px;
     letter-spacing: 0.03px;
-    padding: 0px 8px;
     border-radius: 4px;
     cursor: pointer;
-    background-color: var(--white);
+    background-color: var(--background-color);
     user-select: none;
 
     + .wrapper{
@@ -27,11 +26,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     border-radius: 52px;
     border: 1px solid rgba(22, 24, 35, 0.12);
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--background-color);
 
     &:hover{
         border-color: rgba(22, 24, 35, 0.2);
-        background-color: rgba(255, 255, 255, 1);
+        background-color: var(--background-color);
     }
 }
 
@@ -83,4 +82,5 @@
     align-items: center;
     width: 20px;
     height: 20px;
+    font-size: 17px;
 }   

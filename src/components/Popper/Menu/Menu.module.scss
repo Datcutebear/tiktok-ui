@@ -27,7 +27,7 @@
     height: 0px;
     border-style: solid;
     border-width: 0 8px 7px 8px;
-    border-color: transparent transparent var(--white) transparent;
+    border-color: transparent transparent var(--background-color) transparent;
     transform: rotate(0deg);
     box-shadow: 2px;
 }
@@ -49,6 +49,10 @@
     border-radius: 0;
     &:hover{
         background: rgba(22, 24, 35, 0.03);
+    }
+
+    &.separate{
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
 }
 
@@ -99,3 +103,7 @@
     width: 17px;
     height: 17px;
 }
+
+//Logout btn
+
+

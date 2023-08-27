@@ -23,7 +23,7 @@
     font-feature-settings: "tnum";
     position: relative;
     overflow: hidden;
-    color: rgb(255, 255, 255);
+    color: var(--background-color);
     line-height: 32px;
     border-radius: 50%;
     background-color: rgba(136, 136, 136, 0.5);

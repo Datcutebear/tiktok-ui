@@ -3,16 +3,21 @@ import classNames from 'classnames/bind';
 import image from '~/assets/images';
 
 //Phần 2
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faSearch, faSpinner, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard} from '@fortawesome/free-solid-svg-icons';   
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMessage, faUser, faBookmark, faLightbulb } from '@fortawesome/free-regular-svg-icons';
+import { faCommentDollar, faToolbox, faTimes, faSearch, faSpinner, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faArrowUpRightFromSquare, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';   
 import { useEffect, useState } from 'react';
 import {Wrapper as PopperWrapper} from '~/components/Popper';
 
 //Phần 3
-import Tippy from '@tippyjs/react/headless';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
 import AcountItems from '~/components/AcountItems';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+
+//Phần 4
+import 'tippy.js/dist/tippy.css'
 
 const cx = classNames.bind(styles)
 
@@ -45,6 +50,41 @@ const MENU_ITEMS = [
         icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Keyboard shortcut'
 
+    }
+]
+
+const MENU_ACCOUNTS = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View profile',
+        to: '/profile'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faBookmark} />,
+        title: 'Favorites',
+        to: '/feedback'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCommentDollar} />,
+        title: 'Get Coins',
+        to: '/getcoins'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faLightbulb} />,
+        title: 'LIVE Creator Hub',
+        to: '/livecreatorhub'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faToolbox} />,
+        title: 'Settings',
+        to: '/setting'
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faArrowRightToBracket} />,
+        title: 'Log out',
+        to: '/login',
+        separate: true
     }
 ]
 function Header() {
@@ -91,13 +131,16 @@ function Header() {
     const HandleChangeMenu = (menuItem) => {
         console.log(menuItem)
     }
+
+    const currentUser = false
+
     return ( 
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={image.logo} alt='Tiktok' />
                 </div>
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResult.length > 0}
                     render={(attrs) => (
@@ -147,23 +190,57 @@ function Header() {
                         </button>      
                     </div>
                 </div>
-                </Tippy>
+                </HeadlessTippy>
+                
                 <div className={cx('actions')}>
-                    <Button upload to="/upload">
-                        <div className={cx('upload')}>
-                            <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
-                            <span className={cx('upload-text')}>
-                                Upload
-                            </span>
-                        </div>
-                    </Button>
-                    <Button primary>
-                        Log in
-                    </Button>
-                    <Menu items={MENU_ITEMS} onChange={HandleChangeMenu}>
-                        <button className={cx('another-change')}>
-                            <FontAwesomeIcon className={cx('icon-menu')} icon={faEllipsisVertical} />
-                        </button>
+                {   
+                    currentUser ? ( 
+                        <>
+                            <Button upload to="/upload">
+                                <div className={cx('upload')}>
+                                    <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
+                                    <span className={cx('upload-text')}>
+                                        Upload
+                                    </span>
+                                </div>
+                            </Button>
+                            <Tippy content="Messages">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Inbox">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faMessage} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                    <>
+                        <Button upload to="/upload">
+                            <div className={cx('upload')}>
+                                <FontAwesomeIcon className={cx('upload-icon')} icon={faPlus} />
+                                <span className={cx('upload-text')}>
+                                    Upload
+                                </span>
+                            </div>
+                        </Button>
+                        <Button primary>
+                            Log in
+                        </Button>
+                    </>
+                    )}
+
+                    <Menu items={currentUser ? MENU_ACCOUNTS : MENU_ITEMS} onChange={HandleChangeMenu}>
+                        {
+                            currentUser ? (
+                                <img className={cx('user-avatar')} src='https://blogger.googleusercontent.com/img/a/AVvXsEjJ-twiS5eBEOi7ciP5dGYD686PWENTDDpC1HV8unlYZiBK2Efd5qRelzS6P0-xqg7DTi32k01FA9q5o74DZWjKTMqwHwphHsPkOql6P-Hw6Zrl69H2MJjyPTTovF9eisqjs0qOge1pr2bX5ihSzRVEhKTWx6zsHLJy-690VuvVjJKyg1EwcIzUk-0S' alt='Dương Thành Đạt' />
+                            ) : (
+                                <button className={cx('another-change')}>
+                                    <FontAwesomeIcon className={cx('icon-menu')} icon={faEllipsisVertical} />
+                                </button>
+                            )
+                        }
                     </Menu>
                 </div>
             </div>
