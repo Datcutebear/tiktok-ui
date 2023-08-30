@@ -4,26 +4,25 @@ import image from '~/assets/images';
 
 //Phần 2
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMessage, faUser, faBookmark, faLightbulb } from '@fortawesome/free-regular-svg-icons';
-import { faCommentDollar, faToolbox, faTimes, faSearch, faSpinner, faPlus, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard, faArrowUpRightFromSquare, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';   
-import { useEffect, useState } from 'react';
-import {Wrapper as PopperWrapper} from '~/components/Popper';
+import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faPlus, faEllipsisVertical, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';   
 
 //Phần 3
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
-import AcountItems from '~/components/AcountItems';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 
 //Phần 4
 import 'tippy.js/dist/tippy.css'
+import { Feedback, KeyBoarch, Language, LiveAction, Messages, Setting, TiktokCoin, UploadIcon } from '~/components/Icons';
+import Images from '~/components/Images';
+import Search from './Search';
 
 const cx = classNames.bind(styles)
 
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        icon: <Language />,
         title: 'English',
         children: {
             title: "Language",
@@ -42,12 +41,12 @@ const MENU_ITEMS = [
         },
     },
     {
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <Feedback />,
         title: 'Feedback and help',
         to: '/feedback'
     },
     {
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        icon: <KeyBoarch />,
         title: 'Keyboard shortcut'
 
     }
@@ -65,17 +64,17 @@ const MENU_ACCOUNTS = [
         to: '/feedback'
     },
     {
-        icon: <FontAwesomeIcon icon={faCommentDollar} />,
+        icon: <TiktokCoin />,
         title: 'Get Coins',
         to: '/getcoins'
     },
     {
-        icon: <FontAwesomeIcon icon={faLightbulb} />,
+        icon: <LiveAction />,
         title: 'LIVE Creator Hub',
         to: '/livecreatorhub'
     },
     {
-        icon: <FontAwesomeIcon icon={faToolbox} />,
+        icon: <Setting />,
         title: 'Settings',
         to: '/setting'
     },
@@ -88,43 +87,6 @@ const MENU_ACCOUNTS = [
     }
 ]
 function Header() {
-    // Hiện border khi focus
-    const [isInputFocused, setIsInputFocused] = useState(false);
-
-    const handleInputFocus = () => {
-        setIsInputFocused(true);
-    };
-
-    const handleInputBlur = () => {
-        setIsInputFocused(false);
-    };
-
-    // xóa và tải khi nhập xong
-    const [inputValue, setInputValue] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-  
-    const handleInputChange = (event) => {
-      const value = event.target.value;
-      setInputValue(value);
-      setIsLoading(true);
-  
-      // Simulate an asynchronous operation
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1500);
-    };
-  
-    const handleDeleteClick = () => {
-      setInputValue('');
-    };
-    // Làm menu tìm kiếm cho search
-    const [searchResult, setSearchResult] = useState([])
-
-    useEffect(() =>{
-        setTimeout(() => {
-            setSearchResult([])
-        }, 3000);
-    })
 
     //Handle logic
 
@@ -132,7 +94,7 @@ function Header() {
         console.log(menuItem)
     }
 
-    const currentUser = false
+    const currentUser = true
 
     return ( 
         <header className={cx('wrapper')}>
@@ -140,58 +102,7 @@ function Header() {
                 <div className={cx('logo')}>
                     <img src={image.logo} alt='Tiktok' />
                 </div>
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                                <PopperWrapper>
-                                   <div>
-                                    <div className={cx('recent-result')}>
-                                        Recent searches
-                                    </div>
-                                   </div>
-                                   <div>
-                                    <div className={cx('recommend')}>
-                                        You may like
-                                    </div>
-                                    <div className={cx('account')}>
-                                        Accounts
-                                    </div>
-                                   </div>
-                                   <AcountItems />
-                                   <AcountItems />
-                                   <AcountItems />
-                                   <AcountItems />
-                                </PopperWrapper>
-                            </div>
-                    )}
-                >
-                <div className={cx('search')}>
-                    <div className={cx('search-element', { focused: isInputFocused })}>
-                        <input className={cx('input')} placeholder='Search accounts and videos' spellCheck='false' 
-                            onFocus={handleInputFocus}
-                            onBlur={handleInputBlur}
-                            onChange={handleInputChange}
-                            value={inputValue}
-                        />
-                        {inputValue && !isLoading && (
-                            <button className={cx('close-button')} onClick={handleDeleteClick}>    
-                                <FontAwesomeIcon icon={faTimes} />                       
-                            </button>
-                        )}
-                        {isLoading && ( 
-                            <div className={cx('loading')}>
-                             <FontAwesomeIcon icon={faSpinner} />
-                            </div>
-                        )}
-                        <button className={cx('search-button')}>
-                            <FontAwesomeIcon icon={faSearch} />    
-                        </button>      
-                    </div>
-                </div>
-                </HeadlessTippy>
-                
+                <Search />               
                 <div className={cx('actions')}>
                 {   
                     currentUser ? ( 
@@ -206,12 +117,12 @@ function Header() {
                             </Button>
                             <Tippy content="Messages">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <Tippy content="Inbox">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <Messages />
                                 </button>
                             </Tippy>
                         </>
@@ -234,7 +145,10 @@ function Header() {
                     <Menu items={currentUser ? MENU_ACCOUNTS : MENU_ITEMS} onChange={HandleChangeMenu}>
                         {
                             currentUser ? (
-                                <img className={cx('user-avatar')} src='https://blogger.googleusercontent.com/img/a/AVvXsEjJ-twiS5eBEOi7ciP5dGYD686PWENTDDpC1HV8unlYZiBK2Efd5qRelzS6P0-xqg7DTi32k01FA9q5o74DZWjKTMqwHwphHsPkOql6P-Hw6Zrl69H2MJjyPTTovF9eisqjs0qOge1pr2bX5ihSzRVEhKTWx6zsHLJy-690VuvVjJKyg1EwcIzUk-0S' alt='Dương Thành Đạt' />
+                                <Images 
+                                    className={cx('user-avatar')} 
+                                    src='https://blogger.googleusercontent.com/img/a/AVvXsEjJ-twiS5eBEOi7ciP5dGYD686PWENTDDpC1HV8unlYZiBK2Efd5qRelzS6P0-xqg7DTi32k01FA9q5o74DZWjKTMqwHwphHsPkOql6P-Hw6Zrl69H2MJjyPTTovF9eisqjs0qOge1pr2bX5ihSzRVEhKTWx6zsHLJy-690VuvVjJKyg1EwcIzUk-0S' 
+                                    alt='Dương Thành Đạt' />
                             ) : (
                                 <button className={cx('another-change')}>
                                     <FontAwesomeIcon className={cx('icon-menu')} icon={faEllipsisVertical} />
