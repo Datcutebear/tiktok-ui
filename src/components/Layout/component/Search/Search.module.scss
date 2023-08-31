@@ -27,6 +27,7 @@
         color: rgba(22, 24, 35, 1);
         padding: 12px 0px;
         flex: 1;
+        font-family: var(--font-family);
     }
     &:hover{
         border: 1.5px solid rgba(22, 24, 35, 0.2);
@@ -42,6 +43,7 @@
             background-color: rgba(22, 24, 35, 0.06);
         }   
     }*/
+    // Khi nhập chữ thì nút đó sẽ hiện lên
     input:not(:placeholder-shown) ~ .search-button{
         color: rgba(22, 24, 35, 0.75);
     } 
@@ -61,6 +63,10 @@
         background-color: rgba(22, 24, 35, 0.12);
         top: 9px;
         right: 52px;
+    }
+    &:hover{
+        color: #333;
+        background-color: rgba(22, 24, 35, 0.06);
     }
 }
 

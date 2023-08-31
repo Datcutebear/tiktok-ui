@@ -8,6 +8,7 @@ import { faUser, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faEllipsisVertical, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';   
 
 //Phần 3
+
 import Tippy from '@tippyjs/react';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
@@ -17,6 +18,10 @@ import 'tippy.js/dist/tippy.css'
 import { Feedback, KeyBoarch, Language, LiveAction, Messages, Setting, TiktokCoin, UploadIcon } from '~/components/Icons';
 import Images from '~/components/Images';
 import Search from './Search';
+import { Link } from 'react-router-dom';
+
+//Phần 6
+import routesConfig from '~/configs/routes'
 
 const cx = classNames.bind(styles)
 
@@ -100,7 +105,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={image.logo} alt='Tiktok' />
+                    <Link to={routesConfig.home}> 
+                        <img src={image.logo} alt='Tiktok' />
+                    </Link> 
                 </div>
                 <Search />               
                 <div className={cx('actions')}>

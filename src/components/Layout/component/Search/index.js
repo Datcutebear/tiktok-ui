@@ -13,6 +13,12 @@ import { Delete } from '~/components/Icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import AcountItems from '~/components/AcountItems';
 
+import { useDebounce } from '~/hooks';
+
+//Phần thư viện Axios
+import axios from 'axios';
+import * as searchService from '~/apiServices/SearchService'
+
 
 
 const cx = classNames.bind(styles)
@@ -36,8 +42,11 @@ function Search() {
   
     const handleInputChange = (event) => {
       const value = event.target.value;
-      setInputValue(value);
-      setIsLoading(true);
+      if (!value.startsWith(' '))
+      {
+        setInputValue(value);
+        setIsLoading(true);
+      }
       
      // Simulate an asynchronous operation
       setTimeout(() => {
@@ -64,20 +73,31 @@ function Search() {
     }
 
     //Call API for searching
+    const debounced = useDebounce(inputValue, 500)
 
     useEffect(() => {
-        if(!inputValue){
+        if(!debounced.trim()){
             setSearchResult([])
             return;
         }
+        
+        const fetchAPI = async () => {
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${inputValue}&type=less`)
-        .then(res => res.json())
-        .then(res => {
-            setSearchResult(res.data)
-        })
-    },[inputValue])
+            const result = await searchService.search(debounced)
+            setSearchResult(result)
+        }
+        
+        fetchAPI()
+
+    },[debounced])
     
+
+    //Debounce là một dạng sau khi search xong mới cho tìm kiếm từ đó
+    
+    // Handle click cho nút searh
+    const handleSubmit = () => {
+
+    }
     return ( 
         <HeadlessTippy
                     interactive
@@ -125,7 +145,7 @@ function Search() {
                              <FontAwesomeIcon icon={faSpinner} />
                             </div>
                         )}
-                        <button className={cx('search-button')}>
+                        <button className={cx('search-button')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
                             <FontAwesomeIcon icon={faSearch} />    
                         </button>      
                     </div>

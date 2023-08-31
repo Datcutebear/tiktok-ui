@@ -1,7 +1,14 @@
+import { useParams } from 'react-router-dom';
+
 function Profile() {
-    return (
-        <h2>Profile page</h2>    
-    );
+  const params = useParams();
+  const { nickname } = params;
+
+  return (
+    <div>
+      <h2>Profile page for {nickname}</h2>
+    </div>
+  );
 }
 
-export default Profile;
+export default Profile;;
