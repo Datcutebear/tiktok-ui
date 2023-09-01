@@ -42,6 +42,116 @@ const MENU_ITEMS = [
                     code: 'vn',
                     title: "Tiếng việt"
                 },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: "Tiếng việt"
+                },
             ],
         },
     },

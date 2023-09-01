@@ -5,7 +5,7 @@
     line-height: 21px;
     letter-spacing: 0.03px;
     margin-top: -6px;
-    min-width: 223px;
+    min-width: 237px;
     list-style: none;
     .menu-items{
         margin-left: 0px;
@@ -38,9 +38,10 @@
 }
 //menu items
 .menu-items{
-    font-size: 16px;
-    line-height: 21px;
-    letter-spacing: 0.03px;
+    font-family: 'TikTokDisplayFont', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.093px;
     padding: 10px 8px 10px 16px;
     margin: 0px;
     min-width: 223px;
@@ -54,6 +55,10 @@
     &.separate{
         border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
+}
+
+.menu-body{
+    overflow-y: overlay;
 }
 
 @keyframes FadeOut {
@@ -78,6 +83,8 @@
     height: 50px;
     align-items: center;
     margin-top: -8px;
+    flex-shrink: 0;
+    font-size: 14px;
 }
 
 .back-btn{

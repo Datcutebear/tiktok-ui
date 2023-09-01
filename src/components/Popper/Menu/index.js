@@ -13,7 +13,7 @@ const cx = classNames.bind(styles)
 
 const defaultFn = () => {}
 
-function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn}) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn, ...passProps}) {
     
     const [history, setHistory] = useState([{data: items}])
 
@@ -46,7 +46,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn}
     }
 
     return ( 
-        <Tippy 
+        <Tippy
+            {...passProps} 
             interactive
             delay = {[0,700]}
             placement = 'bottom-end'
@@ -60,9 +61,11 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn}
                             currentArray.splice(history.length - 1, 1)
                             setHistory(currentArray)
                         }} />}
-                        {itemRender()}
-                        {history.length === 1 && <DarkLightMode  theme={theme} toggleTheme={toggleTheme} />}
-                        {renderLogout()}
+                        <div className={cx('menu-body')}> 
+                            {itemRender()}
+                            {history.length === 1 && <DarkLightMode  theme={theme} toggleTheme={toggleTheme} />}
+                            {renderLogout()}                       
+                        </div>
                     </PopperWrapper>
                 </div>
             )}

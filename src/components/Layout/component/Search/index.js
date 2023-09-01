@@ -26,6 +26,9 @@ const cx = classNames.bind(styles)
 function Search() {
     // Hiện border khi focus
     const [isInputFocused, setIsInputFocused] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const handleInputFocus = () => {
         setIsInputFocused(true);
@@ -37,9 +40,6 @@ function Search() {
     };
 
     // xóa và tải khi nhập xong
-    const [inputValue, setInputValue] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-  
     const handleInputChange = (event) => {
       const value = event.target.value;
       if (!value.startsWith(' '))
@@ -98,59 +98,64 @@ function Search() {
     const handleSubmit = () => {
 
     }
-    return ( 
-        <HeadlessTippy
-                    interactive
-                    visible={showResult && searchResult.length > 0}
-                    render={(attrs) => (
-                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                                <PopperWrapper>
-                                   <div>
-                                    <div className={cx('recent-result')}>
-                                        Recent searches
-                                    </div>
-                                   </div>
-                                   <div>
-                                    <div className={cx('recommend')}>
-                                        You may like
-                                    </div>
-                                    <div className={cx('account')}>
-                                        Accounts
-                                    </div>
-                                   </div>
-                                   {searchResult.map((result) => (
-                                        <AcountItems key={result.id} data={result}/>
-                                   ))}
-                                </PopperWrapper>
-                            </div>
-                    )}
-                    onClickOutside={handleTippyHidden}
-                >
-                <div className={cx('search')}>
-                    <div className={cx('search-element', { focused: isInputFocused })}>
-                        <input className={cx('input')} placeholder='Search accounts and videos' spellCheck='false' 
-                            onFocus={handleInputFocus}
-                            onBlur={handleInputBlur}
-                            onChange={handleInputChange}
-                            value={inputValue}
-                            ref={inputRef}
-                        />
-                        {!!inputValue && !isLoading && (
-                            <button className={cx('close-button')} onClick={handleDeleteClick}>    
-                                <Delete />                       
-                            </button>
+    return (
+        // có thể xóa bỏ warning của Tippy bằng hai cách, là gắn thêm appendTo như bên dưới
+        // hoặc có thể bọc nó bằng thẻ div 
+        <div>
+            <HeadlessTippy
+                        appendTo={() => document.body}
+                        interactive
+                        visible={showResult && searchResult.length > 0}
+                        render={(attrs) => (
+                                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                                    <PopperWrapper>
+                                       <div>
+                                        <div className={cx('recent-result')}>
+                                            Recent searches
+                                        </div>
+                                       </div>
+                                       <div>
+                                        <div className={cx('recommend')}>
+                                            You may like
+                                        </div>
+                                        <div className={cx('account')}>
+                                            Accounts
+                                        </div>
+                                       </div>
+                                       {searchResult.map((result) => (
+                                            <AcountItems key={result.id} data={result}/>
+                                       ))}
+                                    </PopperWrapper>
+                                </div>
                         )}
-                        {isLoading && ( 
-                            <div className={cx('loading')}>
-                             <FontAwesomeIcon icon={faSpinner} />
-                            </div>
-                        )}
-                        <button className={cx('search-button')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
-                            <FontAwesomeIcon icon={faSearch} />    
-                        </button>      
+                        onClickOutside={handleTippyHidden}
+                    >
+                    <div className={cx('search')}>
+                        <div className={cx('search-element', { focused: isInputFocused })}>
+                            <input className={cx('input')} placeholder='Search accounts and videos' spellCheck='false' 
+                                onFocus={handleInputFocus}
+                                onBlur={handleInputBlur}
+                                onChange={handleInputChange}
+                                value={inputValue}
+                                ref={inputRef}
+                            />
+                            {!!inputValue && !isLoading && (
+                                <button className={cx('close-button')} onClick={handleDeleteClick}>    
+                                    <Delete />                       
+                                </button>
+                            )}
+                            {isLoading && ( 
+                                <div className={cx('loading')}>
+                                 <FontAwesomeIcon icon={faSpinner} />
+                                </div>
+                            )}
+                            <button className={cx('search-button')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
+                                <FontAwesomeIcon icon={faSearch} />    
+                            </button>      
+                        </div>
                     </div>
-                </div>
-                </HeadlessTippy>
+                    </HeadlessTippy>
+        </div>
     );
 }
 
