@@ -7,7 +7,7 @@ import { useState, useContext } from "react";
 import Header from "./Header";
 import DarkLightMode from "~/components/DarkLightMode";
 import { ThemeContext} from "~/components/DarkLightMode/ThemeContext";
-
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles)
 
@@ -56,7 +56,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
             render = {(attrs) => (
                 <div className={cx('content')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className = {cx('custom-popper')}>
-                        { history.length > 1 && <Header title="Language" onBack={() => {
+                        { history.length > 1 && <Header title={history[history.length-1].title} onBack={() => {
                             const currentArray = [...history]
                             currentArray.splice(history.length - 1, 1)
                             setHistory(currentArray)
@@ -75,5 +75,10 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn,
         </Tippy>
     );
 }
-
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+    onChange: PropTypes.func,
+}
 export default Menu;

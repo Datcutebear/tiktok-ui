@@ -21,7 +21,7 @@ import Search from './Search';
 import { Link } from 'react-router-dom';
 
 //Phần 6
-import routesConfig from '~/configs/routes'
+import config from '~/configs'
 
 const cx = classNames.bind(styles)
 
@@ -215,7 +215,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <Link to={routesConfig.home}> 
+                    <Link to={config.routes.home}> 
                         <img src={image.logo} alt='Tiktok' />
                     </Link> 
                 </div>
@@ -264,7 +264,7 @@ function Header() {
                             currentUser ? (
                                 <Images 
                                     className={cx('user-avatar')} 
-                                    src='https://blogger.googleusercontent.com/img/a/AVvXsEjJ-twiS5eBEOi7ciP5dGYD686PWENTDDpC1HV8unlYZiBK2Efd5qRelzS6P0-xqg7DTi32k01FA9q5o74DZWjKTMqwHwphHsPkOql6P-Hw6Zrl69H2MJjyPTTovF9eisqjs0qOge1pr2bX5ihSzRVEhKTWx6zsHLJy-690VuvVjJKyg1EwcIzUk-0S' 
+                                    src={image.ava} 
                                     alt='Dương Thành Đạt' />
                             ) : (
                                 <button className={cx('another-change')}>

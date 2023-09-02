@@ -1,4 +1,5 @@
 import Header from "../component/Header"
+import PropTypes from 'prop-types';
 
 function UploadHeaderLayout({children}){
     return(
@@ -12,4 +13,8 @@ function UploadHeaderLayout({children}){
         </div>
     )
 } 
+
+UploadHeaderLayout.propTypes = {
+    children: PropTypes.node.isRequired,
+}
 export default UploadHeaderLayout

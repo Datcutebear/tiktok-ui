@@ -3,6 +3,7 @@ import styles from './AcountItems.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faEllipsis} from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'
 
 const cx = classNames.bind(styles)
 
@@ -28,5 +29,7 @@ function AcountItems({data}) {
         </Link>
     )
 }
-
+AcountItems.propTypes = {
+    data: PropTypes.object.isRequired
+}   
 export default AcountItems
